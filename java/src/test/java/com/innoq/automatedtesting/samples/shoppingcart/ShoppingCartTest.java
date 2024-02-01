@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class ShoppingCartTest_Start_NegativeExample {
+public class ShoppingCartTest {
 
     @Test
     public void add() throws InsufficientUnitsInStockException {
