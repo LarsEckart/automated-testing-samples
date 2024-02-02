@@ -1,6 +1,6 @@
 # Writing good tests
 
-What are the 3 pillars of good init tests we discussed?
+What are the 3 pillars of good unit tests we discussed?
 
 
 Makes changes to the test in this project so that it is easier to understand what behaviour we're testing.
