@@ -1,6 +1,6 @@
 class ShippingCalculator {
     calculateShipping(subtotalAmount: number): number {
-        return 0;
+        return subtotalAmount > 100 ? 0 : subtotalAmount * 0.1;
     }
 }
 

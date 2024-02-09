@@ -1,5 +1,5 @@
 export class CurrentUser {
-    customerStatus(): any {
-        return null;
+
+    constructor(readonly customerStatus: any) {
     }
 }

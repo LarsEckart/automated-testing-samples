@@ -2,7 +2,7 @@ import { Article } from './article';
 
 class Stock {
     availableUnits(article: Article): number {
-        return 0;
+        return Math.floor(Math.random() * 10) + 1;
     }
 }
 

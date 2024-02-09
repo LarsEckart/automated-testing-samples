@@ -33,7 +33,7 @@ public class ShoppingCart {
         var availableUnits = stock.availableUnits(article);
         if (quantity > availableUnits)
             throw new InsufficientUnitsInStockException();
-        var customerStatus = currentUser.customerStatus();
+        var customerStatus = currentUser.getCustomerStatus();
         var price = priceCalculator.calculatePrice(article, customerStatus);
         this.items.add(new Item(article, quantity, price));
         calculateTotals();

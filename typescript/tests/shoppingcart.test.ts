@@ -17,7 +17,7 @@ describe('ShoppingCart', () => {
         const stock = new Stock()
         const spyStock = vi.spyOn(stock, 'availableUnits')
         spyStock.mockImplementationOnce(() => 2).mockImplementationOnce(() => 3)
-        const currentUser1 = new CurrentUser();
+        const currentUser1 = new CurrentUser(undefined);
         const spyCurrentUser = vi.spyOn(currentUser1, 'customerStatus')
         spyCurrentUser.mockImplementation(() => CustomerStatus.GOLD)
         let priceCalculator = new PriceCalculator();
@@ -26,8 +26,8 @@ describe('ShoppingCart', () => {
         let shippingCalculator = new ShippingCalculator();
         const spyShippingCalculator = vi.spyOn(shippingCalculator, 'calculateShipping')
         spyShippingCalculator.mockImplementationOnce(() => 3.5).mockImplementationOnce(() => 3.5)
-        const article1 = new Article()
-        const article2 = new Article()
+        const article1 = new Article('', '', '', '');
+        const article2 = new Article('', '', '', '');
         const shoppingCart = new ShoppingCart(stock, currentUser1, priceCalculator, shippingCalculator);
         shoppingCart.add(article1, 1)
         shoppingCart.add(article2, 3)
@@ -39,8 +39,11 @@ describe('ShoppingCart', () => {
         expect(spyShippingCalculator).toHaveBeenCalledWith(9.95)
         expect(spyShippingCalculator).toHaveBeenCalledWith(32.45)
         expect(shoppingCart.numberOfItems()).toBe(2)
+        expect(shoppingCart.getItems()).toBeDefined()
+        expect(shoppingCart.getItems()[0]).toBeDefined()
         expect(shoppingCart.getItems()[0].quantity).toBe(1)
         expect(shoppingCart.getItems()[0].amount).toBe(9.95)
+        expect(shoppingCart.getItems()[1]).toBeDefined()
         expect(shoppingCart.getItems()[1].quantity).toBe(3)
         expect(shoppingCart.getItems()[1].amount).toBe(22.5)
         expect(shoppingCart.getSubtotalAmount()).toBe(32.45)

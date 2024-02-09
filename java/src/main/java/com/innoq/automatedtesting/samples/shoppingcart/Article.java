@@ -1,19 +1,4 @@
 package com.innoq.automatedtesting.samples.shoppingcart;
 
-public class Article {
-    public String brand() {
-        return null;
-    }
-
-    public String name() {
-        return null;
-    }
-
-    public String color() {
-        return null;
-    }
-
-    public String size() {
-        return null;
-    }
+public record Article(String brand, String name, String color, String size) {
 }
