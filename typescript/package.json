@@ -7,7 +7,7 @@
         "prebuild": "rm -rf dist",
         "build": "tsc",
         "start": "node dist/index.js",
-        "test": "vitest"
+        "test": "tsc --noEmit && vitest"
     },
     "keywords": [
         "kata",
