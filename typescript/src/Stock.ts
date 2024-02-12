@@ -1,4 +1,4 @@
-import { Article } from './article';
+import { Article } from './Article';
 
 class Stock {
     availableUnits(article: Article): number {

@@ -1,5 +1,8 @@
+import {Article} from "./Article";
+import {CustomerStatus} from "./CustomerStatus";
+
 class PriceCalculator {
-    calculatePrice(article: any, customerStatus: any): any {
+    calculatePrice(article: Article, customerStatus: CustomerStatus): number {
         if (article.name === "Smartphone") {
             return 599.99;
         } else if (article.name === "Coffee Maker") {
@@ -21,7 +24,7 @@ class PriceCalculator {
         } else if (article.name === "Fancy Watch") {
             return 199.99;
         } else {
-            throw new Error('No price for article: ' + article.name());
+            throw new Error('No price for article: ' + article.name);
         }
     }
 }

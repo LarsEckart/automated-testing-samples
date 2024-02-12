@@ -5,7 +5,7 @@ import {PriceCalculator} from './PriceCalculator';
 import {ShippingCalculator} from './ShippingCalculator';
 import {Item} from './Item';
 
-import {InsufficientUnitsInStockException} from './insufficientstockexception';
+import {InsufficientUnitsInStockException} from './InsufficientUnitsInStockException';
 
 class ShoppingCart {
     private stock: Stock;
@@ -34,8 +34,7 @@ class ShoppingCart {
         const availableUnits = this.stock.availableUnits(article);
         if (quantity > availableUnits)
             throw new Error('InsufficientUnitsInStockException');
-        const customerStatus = this.currentUser.customerStatus();
-        const price = this.priceCalculator.calculatePrice(article, customerStatus);
+        const price = this.priceCalculator.calculatePrice(article, this.currentUser.customerStatus);
         this.items.push(new Item(article, quantity, price));
         this.calculateTotals();
     }

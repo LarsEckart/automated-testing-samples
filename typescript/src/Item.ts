@@ -1,10 +1,12 @@
+import {Article} from "./Article";
+
 class Item {
     article: any;
     quantity: number;
     price: number;
     amount: number;
 
-    constructor(article: any, quantity: number, price: number) {
+    constructor(article: Article, quantity: number, price: number) {
         this.article = article;
         this.quantity = quantity;
         this.price = price;

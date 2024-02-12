@@ -1,12 +1,12 @@
 import {afterEach, describe, expect, it, vi} from 'vitest'
 
-import {ShoppingCart} from '../src/shoppingcart';
-import {Stock} from '../src/stock';
+import {ShoppingCart} from '../src/ShoppingCart';
+import {Stock} from '../src/Stock';
 import {CurrentUser} from '../src/CurrentUser';
-import {PriceCalculator} from "../src/pricecalculator";
-import {ShippingCalculator} from "../src/shippingcalculator";
-import {Article} from "../src/article";
-import {CustomerStatus} from "../src/customerstatus";
+import {PriceCalculator} from "../src/PriceCalculator";
+import {ShippingCalculator} from "../src/ShippingCalculator";
+import {Article} from "../src/Article";
+import {CustomerStatus} from "../src/CustomerStatus";
 
 describe('ShoppingCart', () => {
     afterEach(() => {
@@ -17,9 +17,7 @@ describe('ShoppingCart', () => {
         const stock = new Stock()
         const spyStock = vi.spyOn(stock, 'availableUnits')
         spyStock.mockImplementationOnce(() => 2).mockImplementationOnce(() => 3)
-        const currentUser1 = new CurrentUser(undefined);
-        const spyCurrentUser = vi.spyOn(currentUser1, 'customerStatus')
-        spyCurrentUser.mockImplementation(() => CustomerStatus.GOLD)
+        const currentUser1 = new CurrentUser(CustomerStatus.GOLD);
         let priceCalculator = new PriceCalculator();
         const spyPriceCalculator = vi.spyOn(priceCalculator, 'calculatePrice')
         spyPriceCalculator.mockImplementationOnce(() => 9.95).mockImplementationOnce(() => 7.5)
@@ -33,7 +31,6 @@ describe('ShoppingCart', () => {
         shoppingCart.add(article2, 3)
         expect(spyStock).toHaveBeenCalledWith(article1)
         expect(spyStock).toHaveBeenCalledWith(article2)
-        expect(spyCurrentUser).toHaveBeenCalledTimes(2)
         expect(spyPriceCalculator).toHaveBeenCalledWith(article1, CustomerStatus.GOLD)
         expect(spyPriceCalculator).toHaveBeenCalledWith(article2, CustomerStatus.GOLD)
         expect(spyShippingCalculator).toHaveBeenCalledWith(9.95)
