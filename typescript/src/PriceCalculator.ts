@@ -3,29 +3,52 @@ import {CustomerStatus} from "./CustomerStatus";
 
 class PriceCalculator {
     calculatePrice(article: Article, customerStatus: CustomerStatus): number {
+        let originalPrice: number;
+
         if (article.name === "Smartphone") {
-            return 599.99;
+            originalPrice = 599.99;
         } else if (article.name === "Coffee Maker") {
-            return 49.99;
+            originalPrice = 49.99;
         } else if (article.name === "Running Shoes") {
-            return 89.95;
+            originalPrice = 89.95;
         } else if (article.name === "Wireless Headphones") {
-            return 129.99;
+            originalPrice = 129.99;
         } else if (article.name === "Laptop") {
-            return 999.99;
+            originalPrice = 999.99;
         } else if (article.name === "Yoga Mat") {
-            return 19.99;
+            originalPrice = 19.99;
         } else if (article.name === "Sunglasses") {
-            return 59.95;
+            originalPrice = 59.95;
         } else if (article.name === "Backpack") {
-            return 39.99;
+            originalPrice = 39.99;
         } else if (article.name === "Portable Speaker") {
-            return 79.99;
+            originalPrice = 79.99;
         } else if (article.name === "Fancy Watch") {
-            return 199.99;
+            originalPrice = 199.99;
         } else {
             throw new Error('No price for article: ' + article.name);
         }
+
+        let discountPercentage: number;
+        switch (customerStatus) {
+            case CustomerStatus.REGULAR:
+                discountPercentage = 0.05; // 5% discount
+                break;
+            case CustomerStatus.SILVER:
+                discountPercentage = 0.10; // 10% discount
+                break;
+            case CustomerStatus.GOLD:
+                discountPercentage = 0.15; // 15% discount
+                break;
+            case CustomerStatus.PLATINUM:
+                discountPercentage = 0.20; // 20% discount
+                break;
+            default:
+                discountPercentage = 0; // No discount
+        }
+
+        const discountAmount = originalPrice * discountPercentage;
+        return originalPrice - discountAmount
     }
 }
 

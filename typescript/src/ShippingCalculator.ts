@@ -1,6 +1,8 @@
 class ShippingCalculator {
     calculateShipping(subtotalAmount: number): number {
-        return subtotalAmount > 100 ? 0 : subtotalAmount * 0.1;
+        const randomNumber = Math.random();
+        const randomNumber2 = Math.random();
+        return randomNumber < 0.7 ? randomNumber2 < 0.3 ? 10 : 5 : 0;
     }
 }
 
